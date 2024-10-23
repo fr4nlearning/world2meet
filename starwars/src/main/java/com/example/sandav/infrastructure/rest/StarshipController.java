@@ -18,8 +18,8 @@ public class StarshipController {
     private final StarshipService starshipService;
 
     @PostMapping()
-    public Starship save(@RequestBody Starship starship){
-        return starshipService.save(starship);
+    public ResponseEntity<Starship> save(@RequestBody Starship starship){
+        return ResponseEntity.ok(starshipService.save(starship));
     }
 
     @GetMapping()
