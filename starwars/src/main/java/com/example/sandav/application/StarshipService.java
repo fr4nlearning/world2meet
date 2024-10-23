@@ -22,4 +22,8 @@ public class StarshipService {
     public ResponseListPageable<Starship> findAllStarship(Pageable pageable){
         return this.iStarshipRepository.findAllStarship(pageable);
     }
+
+    public Starship findById(Integer id){
+        return this.iStarshipRepository.findById(id);
+    }
 }

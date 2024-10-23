@@ -43,4 +43,9 @@ public class StarshipPaginationRepositoryImpl implements IStarshipRepository {
                 page.getSize()
         );
     }
+
+    @Override
+    public Starship findById(Integer id) {
+        return this.starshipMapper.toStarship(this.iStarshipPaginationRepository.findById(id).get());
+    }
 }

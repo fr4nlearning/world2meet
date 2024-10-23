@@ -26,4 +26,9 @@ public class StarshipController {
         return starshipService.findAllStarship(pageable);
     }
 
+    @GetMapping("/{id}")
+    public Starship getById(@PathVariable Integer id){
+        return starshipService.findById(id);
+    }
+
 }

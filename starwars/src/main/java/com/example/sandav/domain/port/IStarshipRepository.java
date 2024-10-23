@@ -8,4 +8,5 @@ public interface IStarshipRepository {
     Starship save(Starship starship);
     Starship findByName(String name);
     ResponseListPageable<Starship> findAllStarship(Pageable pageable);
+    Starship findById(Integer id);
 }
