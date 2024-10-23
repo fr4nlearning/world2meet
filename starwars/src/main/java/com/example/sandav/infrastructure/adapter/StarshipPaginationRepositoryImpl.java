@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Repository
@@ -46,6 +47,7 @@ public class StarshipPaginationRepositoryImpl implements IStarshipRepository {
 
     @Override
     public Starship findById(Integer id) {
-        return this.starshipMapper.toStarship(this.iStarshipPaginationRepository.findById(id).get());
+        var ssEntity= this.iStarshipPaginationRepository.findById(id);
+        return ssEntity.isEmpty()? null : this.starshipMapper.toStarship(this.iStarshipPaginationRepository.findById(id).get());
     }
 }

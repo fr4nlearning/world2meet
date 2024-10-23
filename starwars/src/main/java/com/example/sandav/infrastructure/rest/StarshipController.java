@@ -6,8 +6,9 @@ import com.example.sandav.infrastructure.dto.ResponseListPageable;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/v1/starship")
@@ -27,8 +28,11 @@ public class StarshipController {
     }
 
     @GetMapping("/{id}")
-    public Starship getById(@PathVariable Integer id){
-        return starshipService.findById(id);
+    public ResponseEntity<Starship> getById(@PathVariable Integer id){
+        var ssService= starshipService.findById(id);
+        return Objects.nonNull(ssService)?
+                ResponseEntity.ok(ssService) :
+                ResponseEntity.noContent().build();
     }
 
 }
