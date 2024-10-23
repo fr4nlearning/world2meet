@@ -10,21 +10,29 @@
 - Crear una nueva nave
 - Modificar una nave
 - Eliminar una nave
-- Test unitario de como mínimo de una clase.
-- Desarrollar un @Aspect que añada una línea de log cuando nos piden una nave con un id negativo.
+- Test unitario de como mínimo de una clase
+- Desarrollar un @Aspect que añada una línea de log cuando nos piden una nave con un id negativo
 - Gestión centralizada de excepciones
-- Utilizar cachés de algún tipo.
+- Utilizar cachés de algún tipo
 
 #### Puntos a tener en cuenta:
 
-- Las naves se deben guardar en una base de datos. Puede ser, por ejemplo, H2 en memoria.
-- La prueba se debe presentar en un repositorio de Git. No hace falta que esté publicado. Se puede enviar comprimido en un único archivo.
+- Las naves se deben guardar en una base de datos. Puede ser, por ejemplo, H2 en memoria
+- La prueba se debe presentar en un repositorio de Git. No hace falta que esté publicado. Se puede enviar comprimido en un único archivo
 
 #### Puntos opcionales de mejora:
 
-- Utilizar alguna librería que facilite el mantenimiento de los scripts DDL de base de datos.
-- Test de integración.
-- Presentar la aplicación dockerizada.
-- Documentación de la API.
-- Seguridad del API.
-- Implementar algún consumer/producer para algún broker (Rabbit, Kafka, etc).
+- Utilizar alguna librería que facilite el mantenimiento de los scripts DDL de base de datos
+- Test de integración
+- Presentar la aplicación dockerizada
+- Documentación de la API
+- Seguridad del API
+- Implementar algún consumer/producer para algún broker (Rabbit, Kafka, etc)
+
+---
+
+#### Contenedor MySQL
+
+``` es
+docker run --name mysql_starwars -e MYSQL_PASSWORD=sasa -e MYSQL_DATABASE=sw_db -e MYSQL_USER=toor -e MYSQL_ROOT_PASSWORD=sasa -p 3306:3306 -d mysql:8.0
+```
