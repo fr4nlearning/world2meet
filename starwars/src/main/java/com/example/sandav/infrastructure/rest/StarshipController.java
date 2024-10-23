@@ -6,6 +6,7 @@ import com.example.sandav.infrastructure.dto.ResponseListPageable;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.Objects;
@@ -19,7 +20,7 @@ public class StarshipController {
 
     @PostMapping()
     public ResponseEntity<Starship> save(@RequestBody Starship starship){
-        return ResponseEntity.ok(starshipService.save(starship));
+        return new ResponseEntity<>(starshipService.save(starship), HttpStatus.CREATED);
     }
 
     @GetMapping()
