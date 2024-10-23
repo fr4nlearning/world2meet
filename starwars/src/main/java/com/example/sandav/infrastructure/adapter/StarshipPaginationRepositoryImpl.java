@@ -10,8 +10,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Repository
 @AllArgsConstructor
@@ -24,7 +22,6 @@ public class StarshipPaginationRepositoryImpl implements IStarshipRepository {
     public Starship save(Starship starship) {
         return this.starshipMapper.toStarship(
                 iStarshipPaginationRepository.save(this.starshipMapper.toStarshipEntity(starship)));
-
     }
 
     @Override
