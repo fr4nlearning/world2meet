@@ -48,4 +48,9 @@ public class StarshipPaginationRepositoryImpl implements IStarshipRepository {
                 .map(starshipEntity -> starshipMapper.toStarship(starshipEntity))
                 .orElse(null);
     }
+
+    @Override
+    public void deleteById(Integer id) {
+        this.iStarshipPaginationRepository.deleteById(id);
+    }
 }

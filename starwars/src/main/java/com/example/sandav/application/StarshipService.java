@@ -40,4 +40,8 @@ public class StarshipService {
                                 .name(starship.getName())
                                 .build());
     }
+
+    public void deleteById(Integer id){
+        this.iStarshipRepository.deleteById(id);
+    }
 }

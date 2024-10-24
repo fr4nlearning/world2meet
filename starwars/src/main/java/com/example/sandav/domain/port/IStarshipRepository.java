@@ -9,4 +9,5 @@ public interface IStarshipRepository {
     Starship findByName(String name);
     ResponseListPageable<Starship> findAllStarship(Pageable pageable);
     Starship findById(Integer id);
+    void deleteById(Integer id);
 }

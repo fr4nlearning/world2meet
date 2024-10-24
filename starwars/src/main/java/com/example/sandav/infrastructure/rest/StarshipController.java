@@ -45,4 +45,9 @@ public class StarshipController {
                 ResponseEntity.noContent().build();
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Integer id){
+        starshipService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }
