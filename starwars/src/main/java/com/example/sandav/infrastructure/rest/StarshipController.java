@@ -24,8 +24,8 @@ public class StarshipController {
     }
 
     @GetMapping()
-    public ResponseListPageable<Starship> getAllStarship(Pageable pageable){
-        return starshipService.findAllStarship(pageable);
+    public ResponseEntity<ResponseListPageable<Starship>> getAllStarship(Pageable pageable){
+        return ResponseEntity.ok(starshipService.findAllStarship(pageable));
     }
 
     @GetMapping("/{id}")
@@ -33,7 +33,7 @@ public class StarshipController {
         var ssService= starshipService.findById(id);
         return Objects.nonNull(ssService)?
                 ResponseEntity.ok(ssService) :
-                ResponseEntity.noContent().build();
+                ResponseEntity.notFound().build();
     }
 
     @PutMapping("/{id}")
@@ -42,7 +42,7 @@ public class StarshipController {
 
         return Objects.nonNull(ssService)?
                 ResponseEntity.ok(ssService) :
-                ResponseEntity.noContent().build();
+                ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{id}")
