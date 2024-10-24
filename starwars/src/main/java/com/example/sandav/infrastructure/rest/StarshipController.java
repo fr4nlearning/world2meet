@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @RestController
@@ -24,8 +25,9 @@ public class StarshipController {
     }
 
     @GetMapping()
-    public ResponseEntity<ResponseListPageable<Starship>> getAllStarship(Pageable pageable){
-        return ResponseEntity.ok(starshipService.findAllStarship(pageable));
+    public ResponseEntity<ResponseListPageable<Starship>> getAllStarship(
+            @RequestParam(required = false) String name, Pageable pageable){
+        return ResponseEntity.ok(starshipService.findByNamePageable(name, pageable));
     }
 
     @GetMapping("/{id}")

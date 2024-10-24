@@ -6,8 +6,7 @@ import org.springframework.data.domain.Pageable;
 
 public interface IStarshipRepository {
     Starship save(Starship starship);
-    Starship findByName(String name);
-    ResponseListPageable<Starship> findAllStarship(Pageable pageable);
+    ResponseListPageable<Starship> findByNamePageable(String name, Pageable pageable);
     Starship findById(Integer id);
     void deleteById(Integer id);
 }

@@ -3,10 +3,8 @@ package com.example.sandav.infrastructure.adapter;
 import com.example.sandav.domain.model.Starship;
 import com.example.sandav.domain.port.IStarshipRepository;
 import com.example.sandav.infrastructure.dto.ResponseListPageable;
-import com.example.sandav.infrastructure.entity.StarshipEntity;
 import com.example.sandav.infrastructure.mapper.StarshipMapper;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
@@ -25,20 +23,15 @@ public class StarshipPaginationRepositoryImpl implements IStarshipRepository {
     }
 
     @Override
-    public Starship findByName(String name) {
-        return null;
-    }
+    public ResponseListPageable<Starship> findByNamePageable(String name, Pageable pageable) {
 
-    @Override
-    public ResponseListPageable<Starship> findAllStarship(Pageable pageable) {
-
-        Page<StarshipEntity> page= this.iStarshipPaginationRepository.findAll(pageable);
+        var pageStarship= this.iStarshipPaginationRepository.findByNamePageable(name, pageable);
         return new ResponseListPageable<Starship>(
-                page.getContent().stream().map(starshipEntity -> starshipMapper.toStarship(starshipEntity)).toList(),
-                page.getTotalElements(),
-                page.getTotalPages(),
-                page.getNumber(),
-                page.getSize()
+                pageStarship.getContent().stream().map(starshipEntity -> starshipMapper.toStarship(starshipEntity)).toList(),
+                pageStarship.getTotalElements(),
+                pageStarship.getTotalPages(),
+                pageStarship.getNumber(),
+                pageStarship.getSize()
         );
     }
 

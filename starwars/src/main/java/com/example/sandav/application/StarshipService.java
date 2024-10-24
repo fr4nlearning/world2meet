@@ -16,12 +16,8 @@ public class StarshipService {
         return this.iStarshipRepository.save(starship);
     }
 
-    public Starship findByName(String name){
-        return this.iStarshipRepository.findByName(name);
-    }
-
-    public ResponseListPageable<Starship> findAllStarship(Pageable pageable){
-        return this.iStarshipRepository.findAllStarship(pageable);
+    public ResponseListPageable<Starship> findByNamePageable(String name, Pageable pageable){
+        return this.iStarshipRepository.findByNamePageable(name, pageable);
     }
 
     public Starship findById(Integer id){
