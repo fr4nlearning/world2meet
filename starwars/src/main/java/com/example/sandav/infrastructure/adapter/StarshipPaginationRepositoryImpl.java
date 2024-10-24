@@ -44,7 +44,8 @@ public class StarshipPaginationRepositoryImpl implements IStarshipRepository {
 
     @Override
     public Starship findById(Integer id) {
-        var ssEntity= this.iStarshipPaginationRepository.findById(id);
-        return ssEntity.isEmpty()? null : this.starshipMapper.toStarship(this.iStarshipPaginationRepository.findById(id).get());
+        return this.iStarshipPaginationRepository.findById(id)
+                .map(starshipEntity -> starshipMapper.toStarship(starshipEntity))
+                .orElse(null);
     }
 }
