@@ -1,6 +1,5 @@
 package com.example.sandav.infrastructure.dto;
 
-import com.example.sandav.domain.model.Starship;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
