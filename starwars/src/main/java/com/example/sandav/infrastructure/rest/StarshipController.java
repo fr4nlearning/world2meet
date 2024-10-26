@@ -3,6 +3,7 @@ package com.example.sandav.infrastructure.rest;
 import com.example.sandav.application.StarshipService;
 import com.example.sandav.domain.model.Starship;
 import com.example.sandav.infrastructure.dto.ResponseListPageable;
+import com.example.sandav.infrastructure.exception.StarshipNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -32,18 +33,20 @@ public class StarshipController {
     @GetMapping("/{id}")
     public ResponseEntity<Starship> getById(@PathVariable Integer id){
         var ssService= starshipService.findById(id);
-        return Objects.nonNull(ssService)?
-                ResponseEntity.ok(ssService) :
-                ResponseEntity.notFound().build();
+        if(Objects.nonNull(ssService))
+            return ResponseEntity.ok(ssService);
+        else
+            throw new StarshipNotFoundException(id);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Starship> update(@PathVariable Integer id, @RequestBody Starship starship){
         var ssService= starshipService.update(id, starship);
 
-        return Objects.nonNull(ssService)?
-                ResponseEntity.ok(ssService) :
-                ResponseEntity.notFound().build();
+        if (Objects.nonNull(ssService))
+            return ResponseEntity.ok(ssService);
+        else
+            throw new StarshipNotFoundException(id);
     }
 
     @DeleteMapping("/{id}")
