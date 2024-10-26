@@ -1,4 +1,4 @@
-package com.example.sandav.application;
+package com.example.sandav.application.services;
 
 import com.example.sandav.domain.model.Starship;
 import com.example.sandav.domain.port.IStarshipRepository;

@@ -1,6 +1,6 @@
 package com.example.sandav.infrastructure.config;
 
-import com.example.sandav.application.StarshipService;
+import com.example.sandav.application.services.StarshipService;
 import com.example.sandav.domain.port.IStarshipRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

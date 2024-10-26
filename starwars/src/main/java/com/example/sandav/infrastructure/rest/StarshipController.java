@@ -1,6 +1,6 @@
 package com.example.sandav.infrastructure.rest;
 
-import com.example.sandav.application.StarshipService;
+import com.example.sandav.application.services.StarshipService;
 import com.example.sandav.domain.model.Starship;
 import com.example.sandav.infrastructure.dto.ResponseListPageable;
 import com.example.sandav.infrastructure.exception.StarshipNotFoundException;
