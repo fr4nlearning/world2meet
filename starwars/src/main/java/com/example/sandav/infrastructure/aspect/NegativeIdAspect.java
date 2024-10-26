@@ -16,6 +16,6 @@ public class NegativeIdAspect {
 
         var starshipId= (Integer) joinPoint.getArgs()[0];
         if(starshipId < 0)
-            log.info("Attempt to obtain a Starship with negative id: {}", starshipId);
+            log.warn("Attempt to obtain a Starship with negative id: {}", starshipId);
     }
 }
