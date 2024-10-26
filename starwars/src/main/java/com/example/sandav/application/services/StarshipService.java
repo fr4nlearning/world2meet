@@ -4,6 +4,7 @@ import com.example.sandav.domain.model.Starship;
 import com.example.sandav.domain.port.IStarshipRepository;
 import com.example.sandav.infrastructure.dto.ResponseListPageable;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
 
 import java.util.Objects;
@@ -16,6 +17,7 @@ public class StarshipService {
         return this.iStarshipRepository.save(starship);
     }
 
+    @Cacheable("starships")
     public ResponseListPageable<Starship> findByNamePageable(String name, Pageable pageable){
         return this.iStarshipRepository.findByNamePageable(name, pageable);
     }
