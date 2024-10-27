@@ -7,29 +7,43 @@ import lombok.AllArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Objects;
 
 @AllArgsConstructor
 public class StarshipService {
     private final IStarshipRepository iStarshipRepository;
 
-    @CacheEvict(value = "starships", key = "#starship.id")
-    public Starship save(Starship starship){
-        return this.iStarshipRepository.save(starship);
+    @Transactional
+    public Starship save(Starship starship) {
+        var savedStarship = this.iStarshipRepository.save(starship);
+        evictStarship(savedStarship.getId());
+        return savedStarship;
     }
 
-    @Cacheable("starships")
-    public ResponseListPageable<Starship> findByNamePageable(String name, Pageable pageable){
-        return this.iStarshipRepository.findByNamePageable(name, pageable);
+    @CacheEvict(value = "starships", allEntries = true)
+    private void evictStarship(Integer id) { }
+
+
+    @Cacheable(value = "starships")
+    public ResponseListPageable<Starship> getAllStarshipPageable(Pageable pageable){
+        return this.iStarshipRepository.getAllStarshipPageable(pageable);
     }
 
-    @Cacheable(value = "starships", key= "#id")
+    @Cacheable(value = "starships")
+    public List<Starship> getAllStarshipByName(String name){
+        return this.iStarshipRepository.getAllStarshipByName(name);
+    }
+
+    @Cacheable(value = "starships")
     public Starship findById(Integer id){
         return this.iStarshipRepository.findById(id);
     }
 
-    @CacheEvict(value = "starships", key = "#id")
+    @CacheEvict(value = "starships", allEntries = true)
+    @Transactional
     public Starship update(Integer id, Starship starship){
 
         var ssRespository= this.iStarshipRepository.findById(id);
@@ -43,8 +57,10 @@ public class StarshipService {
                                 .build());
     }
 
-    @CacheEvict(value = "starships", key = "#id")
+    @CacheEvict(value = "starships", allEntries = true)
+    @Transactional
     public void deleteById(Integer id){
+        System.out.println("Evicting starship with ID: " + id);
         this.iStarshipRepository.deleteById(id);
     }
 }

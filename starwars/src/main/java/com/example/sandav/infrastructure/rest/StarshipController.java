@@ -6,10 +6,12 @@ import com.example.sandav.infrastructure.dto.ResponseListPageable;
 import com.example.sandav.infrastructure.exception.StarshipNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @RestController
@@ -25,9 +27,20 @@ public class StarshipController {
     }
 
     @GetMapping()
-    public ResponseEntity<ResponseListPageable<Starship>> getAllStarship(
-            @RequestParam(required = false) String name, Pageable pageable){
-        return ResponseEntity.ok(starshipService.findByNamePageable(name, pageable));
+    public ResponseEntity<ResponseListPageable<Starship>> getAllStarshipPageable(
+            @PageableDefault(page = 0, size = 10) Pageable pageable){
+        var reponseListPageable= starshipService.getAllStarshipPageable(pageable);
+        return ResponseEntity.ok(reponseListPageable);
+    }
+
+    @GetMapping("/by-name")
+    public ResponseEntity<List<Starship>> getAllStarshipByName(
+            @RequestParam(required = true) String name){
+        var listByName= starshipService.getAllStarshipByName(name);
+        if (!listByName.isEmpty())
+            return ResponseEntity.ok(starshipService.getAllStarshipByName(name));
+        else
+            throw new StarshipNotFoundException(name);
     }
 
     @GetMapping("/{id}")
