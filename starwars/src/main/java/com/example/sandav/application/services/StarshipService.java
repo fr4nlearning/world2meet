@@ -60,7 +60,6 @@ public class StarshipService {
     @CacheEvict(value = "starships", allEntries = true)
     @Transactional
     public void deleteById(Integer id){
-        System.out.println("Evicting starship with ID: " + id);
         this.iStarshipRepository.deleteById(id);
     }
 }
