@@ -1,8 +1,8 @@
 # world2meet
 
-### Desarrollar, utilizando Maven, Spring Boot, y Java, una API que permita hacer un mantenimiento CRUD de naves espaciales de series y películas.
+### Desarrollar, utilizando Maven, Spring Boot, y Java, una API que permita hacer un mantenimiento CRUD de naves espaciales de series y películas
 
-#### Este mantenimiento debe permitir:
+#### Este mantenimiento debe permitir
 
 - Consultar todas las naves utilizando paginación
 - Consultar una única nave por id.
@@ -15,12 +15,12 @@
 - Gestión centralizada de excepciones
 - Utilizar cachés de algún tipo
 
-#### Puntos a tener en cuenta:
+#### Puntos a tener en cuenta
 
 - Las naves se deben guardar en una base de datos. Puede ser, por ejemplo, H2 en memoria
 - La prueba se debe presentar en un repositorio de Git. No hace falta que esté publicado. Se puede enviar comprimido en un único archivo
 
-#### Puntos opcionales de mejora:
+#### Puntos opcionales de mejora
 
 - Utilizar alguna librería que facilite el mantenimiento de los scripts DDL de base de datos
 - Test de integración
@@ -31,8 +31,14 @@
 
 ---
 
-#### Contenedor MySQL
+#### Arrancar la aplicacion
 
 ``` es
-docker run --name mysql_starwars -e MYSQL_PASSWORD=sasa -e MYSQL_DATABASE=sw_db -e MYSQL_USER=toor -e MYSQL_ROOT_PASSWORD=sasa -p 3306:3306 -d mysql:8.0
+docker-compose up
+```
+
+#### Swagger
+
+``` es
+http://localhost:8006/swagger-ui.html
 ```

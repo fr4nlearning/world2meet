@@ -2,14 +2,8 @@ package com.example.sandav.infrastructure.rest;
 
 import com.example.sandav.application.services.StarshipService;
 import com.example.sandav.domain.model.Starship;
-import com.example.sandav.infrastructure.dto.Error;
 import com.example.sandav.infrastructure.dto.ResponseListPageable;
 import com.example.sandav.infrastructure.exception.StarshipNotFoundException;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
