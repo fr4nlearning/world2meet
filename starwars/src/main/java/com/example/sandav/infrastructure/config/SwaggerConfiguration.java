@@ -14,7 +14,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
         servers = {
                 @Server(
                         description = "UNIQUE SERVER",
-                        url="http://localhost:8005"
+                        url="/"
                 )
         }
 )

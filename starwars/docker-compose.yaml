@@ -1,0 +1,33 @@
+version: "3.9"
+services:
+  mysql_starwars:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: sasa
+      MYSQL_DATABASE: sw_db
+    restart: always
+    networks:
+      - mired
+  app-starwars:
+    container_name: app-starwars
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    ports:
+      - 8006:8005
+    environment:
+      PORT: 8001
+      DB_HOST: mysql_starwars:3306
+      DB_DATABASE: sw_db
+      DB_USERNAME: root
+      DB_PASSWORD: sasa
+    networks:
+      - mired
+    depends_on:
+      - mysql_starwars
+    restart: always
+
+networks:
+  mired:
