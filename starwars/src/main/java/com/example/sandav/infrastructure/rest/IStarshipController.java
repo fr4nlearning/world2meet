@@ -8,12 +8,14 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RequestMapping("/api/v1/starship")
+@Tag(name = "Starship CRUD", description = "API to manage starships")
 public interface IStarshipController {
     @Operation(
             summary = "Create a Starship",
@@ -75,7 +77,7 @@ public interface IStarshipController {
     )
     @GetMapping()
     public ResponseEntity<ResponseListPageable<Starship>> getAllStarshipPageable(
-            @RequestParam(value= "page", defaultValue = "0") int page,
+            @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "size", defaultValue = "10") int size);
 
     @Operation(

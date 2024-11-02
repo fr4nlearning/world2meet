@@ -8,8 +8,12 @@ import java.util.List;
 
 public interface IStarshipRepository {
     Starship save(Starship starship);
+
     ResponseListPageable<Starship> getAllStarshipPageable(Pageable pageable);
+
     List<Starship> getAllStarshipByName(String name);
+
     Starship findById(Integer id);
+
     void deleteById(Integer id);
 }

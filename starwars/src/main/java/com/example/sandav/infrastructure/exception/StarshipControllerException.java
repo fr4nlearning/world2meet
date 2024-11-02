@@ -13,8 +13,8 @@ import java.time.LocalDateTime;
 public class StarshipControllerException {
 
     @ExceptionHandler(StarshipNotFoundException.class)
-    public ResponseEntity<Error> handleStarshipNotFound(StarshipNotFoundException e){
-        Error error= Error.builder()
+    public ResponseEntity<Error> handleStarshipNotFound(StarshipNotFoundException e) {
+        Error error = Error.builder()
                 .httpStatus(HttpStatus.NOT_FOUND)
                 .localDateTime(LocalDateTime.now())
                 .messge(e.getMessage())
@@ -23,8 +23,8 @@ public class StarshipControllerException {
     }
 
     @ExceptionHandler(JsonMappingException.class)
-    public ResponseEntity<Error> handleJsonMammpin(JsonMappingException e){
-        Error error= Error.builder()
+    public ResponseEntity<Error> handleJsonMammpin(JsonMappingException e) {
+        Error error = Error.builder()
                 .httpStatus(HttpStatus.BAD_REQUEST)
                 .messge(e.getMessage())
                 .build();

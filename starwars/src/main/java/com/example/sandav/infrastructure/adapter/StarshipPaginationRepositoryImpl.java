@@ -27,7 +27,7 @@ public class StarshipPaginationRepositoryImpl implements IStarshipRepository {
     @Override
     public ResponseListPageable<Starship> getAllStarshipPageable(Pageable pageable) {
 
-        var page= this.iStarshipPaginationRepository.findAll(pageable);
+        var page = this.iStarshipPaginationRepository.findAll(pageable);
         return new ResponseListPageable<Starship>(
                 page.getContent().stream().map(starshipEntity -> starshipMapper.toStarship(starshipEntity)).toList(),
                 page.getTotalElements(),
@@ -40,7 +40,7 @@ public class StarshipPaginationRepositoryImpl implements IStarshipRepository {
     @Override
     public List<Starship> getAllStarshipByName(String name) {
 
-        var listStarship= this.iStarshipPaginationRepository.findAllByNameContaining(name);
+        var listStarship = this.iStarshipPaginationRepository.findAllByNameContaining(name);
         return listStarship.stream().map(starshipEntity -> starshipMapper.toStarship(starshipEntity)).toList();
 
     }

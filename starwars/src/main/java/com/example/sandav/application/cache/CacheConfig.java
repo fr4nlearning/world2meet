@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @EnableCaching
 public class CacheConfig {
     @Bean
-    public CacheManager getCache(){
+    public CacheManager getCache() {
         return new ConcurrentMapCacheManager("starships");
     }
 }

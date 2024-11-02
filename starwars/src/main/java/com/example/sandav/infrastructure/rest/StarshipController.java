@@ -26,13 +26,13 @@ public class StarshipController implements IStarshipController {
 
     @Override
     public ResponseEntity<ResponseListPageable<Starship>> getAllStarshipPageable(int page, int size) {
-        var reponseListPageable= starshipService.getAllStarshipPageable(PageRequest.of(page, size));
+        var reponseListPageable = starshipService.getAllStarshipPageable(PageRequest.of(page, size));
         return ResponseEntity.ok(reponseListPageable);
     }
 
     @Override
     public ResponseEntity<List<Starship>> getAllStarshipByName(String name) {
-        var listByName= starshipService.getAllStarshipByName(name);
+        var listByName = starshipService.getAllStarshipByName(name);
         if (!listByName.isEmpty())
             return ResponseEntity.ok(starshipService.getAllStarshipByName(name));
         else
@@ -41,8 +41,8 @@ public class StarshipController implements IStarshipController {
 
     @Override
     public ResponseEntity<Starship> getById(Integer id) {
-        var ssService= starshipService.findById(id);
-        if(Objects.nonNull(ssService))
+        var ssService = starshipService.findById(id);
+        if (Objects.nonNull(ssService))
             return ResponseEntity.ok(ssService);
         else
             throw new StarshipNotFoundException(id);
@@ -50,7 +50,7 @@ public class StarshipController implements IStarshipController {
 
     @Override
     public ResponseEntity<Starship> update(Integer id, Starship starship) {
-        var ssService= starshipService.update(id, starship);
+        var ssService = starshipService.update(id, starship);
         if (Objects.nonNull(ssService))
             return ResponseEntity.ok(ssService);
         else

@@ -12,10 +12,10 @@ import org.springframework.stereotype.Component;
 public class NegativeIdAspect {
 
     @AfterThrowing("execution(* com.example.sandav.infrastructure.rest.StarshipController.getById(..))")
-    public void negativeId(JoinPoint joinPoint){
+    public void negativeId(JoinPoint joinPoint) {
 
-        var starshipId= (Integer) joinPoint.getArgs()[0];
-        if(starshipId < 0)
+        var starshipId = (Integer) joinPoint.getArgs()[0];
+        if (starshipId < 0)
             log.warn("Attempt to obtain a Starship with negative id: {}", starshipId);
     }
 }
