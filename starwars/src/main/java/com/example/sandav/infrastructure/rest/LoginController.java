@@ -21,15 +21,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
 
     private final AuthenticationManager authenticationManager;
-
+    private final JWTGenerator jwtGenerator;
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody UserDto userDto){
-        Authentication authentication= authenticationManager.authenticate(
+    public ResponseEntity<JWTClient> login(@RequestBody UserDto userDto) {
+        Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(userDto.getUsername(), userDto.getPassword())
         );
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        return new ResponseEntity<>("Login Sucess", HttpStatus.OK);
+        String token = jwtGenerator.getToken(userDto.getUsername());
+        JWTClient jwtClient = new JWTClient(token);
+
+        return new ResponseEntity<>(jwtClient, HttpStatus.OK);
     }
 }
