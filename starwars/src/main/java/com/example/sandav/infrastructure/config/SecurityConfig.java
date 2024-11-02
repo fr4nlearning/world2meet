@@ -23,15 +23,15 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(csrf -> csrf.disable()).authorizeHttpRequests(
-                        aut -> aut
-                                .requestMatchers(HttpMethod.GET, "/api/v1/starship/**").hasRole("USER")
-                                .requestMatchers(HttpMethod.POST, "/api/v1/starship/**").hasRole("ADMIN")
-                                .requestMatchers(HttpMethod.DELETE, "/api/v1/starship/**").hasRole("ADMIN")
-                                .requestMatchers(HttpMethod.PUT, "/api/v1/starship/**").hasRole("ADMIN")
-                                .requestMatchers("/api/v1/user/**").permitAll()
-                                .anyRequest().authenticated()
-                )
-                .addFilterAfter(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
+                aut -> aut
+                        .requestMatchers(HttpMethod.GET, "/api/v1/starship/**").hasRole("USER")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/starship/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/starship/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/starship/**").hasRole("ADMIN")
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/webjars/**", "/swagger-ui/**").permitAll()
+                        .requestMatchers("/api/v1/user/**").permitAll().anyRequest().authenticated()
+
+        ).addFilterAfter(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
         ;
         return httpSecurity.build();
     }

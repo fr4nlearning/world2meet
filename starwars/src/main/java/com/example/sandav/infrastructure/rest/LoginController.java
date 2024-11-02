@@ -10,21 +10,17 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/user")
 @AllArgsConstructor
-public class LoginController {
+public class LoginController implements ILoginController {
 
     private final AuthenticationManager authenticationManager;
     private final JWTGenerator jwtGenerator;
 
-    @PostMapping("/login")
-    public ResponseEntity<JWTClient> login(@RequestBody UserDto userDto) {
+    @Override
+    public ResponseEntity<JWTClient> login(UserDto userDto) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(userDto.getUsername(), userDto.getPassword())
         );
