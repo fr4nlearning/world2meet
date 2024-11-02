@@ -22,6 +22,7 @@ public class LoginController {
 
     private final AuthenticationManager authenticationManager;
     private final JWTGenerator jwtGenerator;
+
     @PostMapping("/login")
     public ResponseEntity<JWTClient> login(@RequestBody UserDto userDto) {
         Authentication authentication = authenticationManager.authenticate(

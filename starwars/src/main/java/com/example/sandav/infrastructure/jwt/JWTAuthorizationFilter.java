@@ -23,16 +23,16 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
-            if(tokenExists(request, response)){
-                Claims claims= JWTValid(request);
-                if(claims.get("authorities") != null){
-                    setAuthentication(claims, customDetailService);
-                }else {
-                    SecurityContextHolder.clearContext();
-                }
-            }else {
+        if (tokenExists(request, response)) {
+            Claims claims = JWTValid(request);
+            if (claims.get("authorities") != null) {
+                setAuthentication(claims, customDetailService);
+            } else {
                 SecurityContextHolder.clearContext();
             }
-            filterChain.doFilter(request, response);
+        } else {
+            SecurityContextHolder.clearContext();
+        }
+        filterChain.doFilter(request, response);
     }
 }

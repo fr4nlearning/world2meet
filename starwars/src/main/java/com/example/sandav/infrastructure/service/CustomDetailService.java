@@ -12,9 +12,10 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class CustomDetailService implements UserDetailsService {
     private final UserService userService;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user= userService.findByEmail(username);
+        User user = userService.findByEmail(username);
         return org.springframework.security.core.userdetails.User
                 .builder()
                 .username(user.getEmail())

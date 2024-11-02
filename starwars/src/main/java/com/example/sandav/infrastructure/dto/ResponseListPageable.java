@@ -20,10 +20,10 @@ public class ResponseListPageable<T> {
     private Integer size;
 
     public ResponseListPageable(List<T> list, long totalElements, int page, int number, int size) {
-        this.starshipList= list;
-        this.totalElements= totalElements;
-        this.totalPages= page;
-        this.number= number;
-        this.size= size;
+        this.starshipList = list;
+        this.totalElements = totalElements;
+        this.totalPages = page;
+        this.number = number;
+        this.size = size;
     }
 }

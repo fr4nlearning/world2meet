@@ -15,19 +15,19 @@ import static com.example.sandav.infrastructure.jwt.Constants.*;
 
 @Service
 public class JWTGenerator {
-    public String getToken(String username){
-        List<GrantedAuthority> authorityList= AuthorityUtils.commaSeparatedStringToAuthorityList(
+    public String getToken(String username) {
+        List<GrantedAuthority> authorityList = AuthorityUtils.commaSeparatedStringToAuthorityList(
                 SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream().findFirst().toString()
         );
 
-        String token= Jwts.builder()
+        String token = Jwts.builder()
                 .setId("sandav")
                 .setSubject(username)
                 .claim("authorities", authorityList.stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis()+TOKEN_EXPIRATION_TIME))
+                .setExpiration(new Date(System.currentTimeMillis() + TOKEN_EXPIRATION_TIME))
                 .signWith(getSignedKey(SUPER_SECRET_KEY), SignatureAlgorithm.HS512).compact();
 
-        return "Bearer "+token;
+        return "Bearer " + token;
     }
 }

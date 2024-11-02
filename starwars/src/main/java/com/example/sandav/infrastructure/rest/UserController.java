@@ -19,7 +19,7 @@ public class UserController {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @PostMapping
-    public ResponseEntity<User> save(@RequestBody User user){
+    public ResponseEntity<User> save(@RequestBody User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return ResponseEntity.ok(userService.save(user));
     }

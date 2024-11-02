@@ -24,31 +24,32 @@ public class StarshipService {
     }
 
     @CacheEvict(value = "starships", allEntries = true)
-    private void evictStarship(Integer id) { }
+    private void evictStarship(Integer id) {
+    }
 
 
     @Cacheable(value = "starships")
-    public ResponseListPageable<Starship> getAllStarshipPageable(Pageable pageable){
+    public ResponseListPageable<Starship> getAllStarshipPageable(Pageable pageable) {
         return this.iStarshipRepository.getAllStarshipPageable(pageable);
     }
 
     @Cacheable(value = "starships")
-    public List<Starship> getAllStarshipByName(String name){
+    public List<Starship> getAllStarshipByName(String name) {
         return this.iStarshipRepository.getAllStarshipByName(name);
     }
 
     @Cacheable(value = "starships")
-    public Starship findById(Integer id){
+    public Starship findById(Integer id) {
         return this.iStarshipRepository.findById(id);
     }
 
     @CacheEvict(value = "starships", allEntries = true)
     @Transactional
-    public Starship update(Integer id, Starship starship){
+    public Starship update(Integer id, Starship starship) {
 
-        var ssRespository= this.iStarshipRepository.findById(id);
-        return Objects.isNull(ssRespository)?
-                null:
+        var ssRespository = this.iStarshipRepository.findById(id);
+        return Objects.isNull(ssRespository) ?
+                null :
                 this.iStarshipRepository.save(
                         Starship.builder()
                                 .id(ssRespository.getId())
@@ -59,7 +60,7 @@ public class StarshipService {
 
     @CacheEvict(value = "starships", allEntries = true)
     @Transactional
-    public void deleteById(Integer id){
+    public void deleteById(Integer id) {
         this.iStarshipRepository.deleteById(id);
     }
 }

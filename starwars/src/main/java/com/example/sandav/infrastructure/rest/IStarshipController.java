@@ -75,7 +75,7 @@ public interface IStarshipController {
     )
     @GetMapping()
     public ResponseEntity<ResponseListPageable<Starship>> getAllStarshipPageable(
-            @RequestParam(value= "page", defaultValue = "0") int page,
+            @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "size", defaultValue = "10") int size);
 
     @Operation(

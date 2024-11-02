@@ -10,11 +10,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ServiceConfiguration {
     @Bean
-    public StarshipService starshipService(IStarshipRepository iStarshipRepository){
+    public StarshipService starshipService(IStarshipRepository iStarshipRepository) {
         return new StarshipService(iStarshipRepository);
     }
+
     @Bean
-    public UserService userService(IUserRepository iUserRepository){
+    public UserService userService(IUserRepository iUserRepository) {
         return new UserService(iUserRepository);
     }
 }

@@ -8,11 +8,11 @@ import lombok.AllArgsConstructor;
 public class UserService {
     private final IUserRepository iUserRepository;
 
-    public User save(User user){
+    public User save(User user) {
         return this.iUserRepository.save(user);
     }
 
-    public User findByEmail(String email){
+    public User findByEmail(String email) {
         return this.iUserRepository.findByEmail(email);
     }
 }
