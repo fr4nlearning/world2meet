@@ -17,16 +17,10 @@ public class StarshipService {
     private final IStarshipRepository iStarshipRepository;
 
     @Transactional
-    public Starship save(Starship starship) {
-        var savedStarship = this.iStarshipRepository.save(starship);
-        evictStarship(savedStarship.getId());
-        return savedStarship;
-    }
-
     @CacheEvict(value = "starships", allEntries = true)
-    private void evictStarship(Integer id) {
+    public Starship save(Starship starship) {
+        return this.iStarshipRepository.save(starship);
     }
-
 
     @Cacheable(value = "starships")
     public ResponseListPageable<Starship> getAllStarshipPageable(Pageable pageable) {
