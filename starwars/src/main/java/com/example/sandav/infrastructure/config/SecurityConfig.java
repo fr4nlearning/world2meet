@@ -29,10 +29,10 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/api/v1/starship/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/v1/starship/**").hasRole("ADMIN")
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/webjars/**", "/swagger-ui/**").permitAll()
+                        .requestMatchers("/api/v1/messages/**").permitAll()
                         .requestMatchers("/api/v1/user/**").permitAll().anyRequest().authenticated()
-
-        ).addFilterAfter(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
-        ;
+        ).addFilterAfter(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class);
+        
         return httpSecurity.build();
     }
 
