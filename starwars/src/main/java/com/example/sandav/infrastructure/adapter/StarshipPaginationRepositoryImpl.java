@@ -8,8 +8,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 
 @Repository
 @AllArgsConstructor
@@ -38,11 +36,10 @@ public class StarshipPaginationRepositoryImpl implements IStarshipRepository {
     }
 
     @Override
-    public List<Starship> getAllStarshipByName(String name) {
+    public Iterable<Starship> getAllStarshipByName(String name) {
 
         var listStarship = this.iStarshipPaginationRepository.findAllByNameContaining(name);
-        return listStarship.stream().map(starshipEntity -> starshipMapper.toStarship(starshipEntity)).toList();
-
+        return starshipMapper.toStarshipList(listStarship);
     }
 
     @Override

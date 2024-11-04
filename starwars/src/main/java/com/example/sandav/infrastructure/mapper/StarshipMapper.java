@@ -19,6 +19,8 @@ public interface StarshipMapper {
     )
     Starship toStarship(StarshipEntity starshipEntity);
 
+    Iterable<Starship> toStarshipList(Iterable<StarshipEntity> starshipEntities);
+
     @InheritInverseConfiguration
     StarshipEntity toStarshipEntity(Starship starship);
 }

@@ -18,5 +18,4 @@ public class KafkaController implements IKafkaController {
         kafkaService.save(starship);
         return ResponseEntity.ok().build();
     }
-
 }
