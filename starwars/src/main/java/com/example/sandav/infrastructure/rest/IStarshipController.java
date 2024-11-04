@@ -110,7 +110,7 @@ public interface IStarshipController {
             }
     )
     @GetMapping("/by-name")
-    public ResponseEntity<List<Starship>> getAllStarshipByName(
+    public ResponseEntity<Iterable<Starship>> getAllStarshipByName(
             @RequestParam(required = true) String name);
 
     @Operation(

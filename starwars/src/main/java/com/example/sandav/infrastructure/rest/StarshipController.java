@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import java.util.Objects;
 
 @RestController
@@ -31,12 +30,10 @@ public class StarshipController implements IStarshipController {
     }
 
     @Override
-    public ResponseEntity<List<Starship>> getAllStarshipByName(String name) {
+    public ResponseEntity<Iterable<Starship>> getAllStarshipByName(String name) {
         var listByName = starshipService.getAllStarshipByName(name);
-        if (!listByName.isEmpty())
-            return ResponseEntity.ok(starshipService.getAllStarshipByName(name));
-        else
-            throw new StarshipNotFoundException(name);
+        return ResponseEntity.ok(starshipService.getAllStarshipByName(name));
+
     }
 
     @Override

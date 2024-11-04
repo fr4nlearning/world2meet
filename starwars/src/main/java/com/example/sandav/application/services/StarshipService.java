@@ -28,7 +28,7 @@ public class StarshipService {
     }
 
     @Cacheable(value = "starships")
-    public List<Starship> getAllStarshipByName(String name) {
+    public Iterable<Starship> getAllStarshipByName(String name) {
         return this.iStarshipRepository.getAllStarshipByName(name);
     }
 

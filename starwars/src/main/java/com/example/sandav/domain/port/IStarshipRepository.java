@@ -11,7 +11,7 @@ public interface IStarshipRepository {
 
     ResponseListPageable<Starship> getAllStarshipPageable(Pageable pageable);
 
-    List<Starship> getAllStarshipByName(String name);
+    Iterable<Starship> getAllStarshipByName(String name);
 
     Starship findById(Integer id);
 

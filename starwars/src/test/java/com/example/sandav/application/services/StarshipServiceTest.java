@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Pageable;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -68,7 +69,10 @@ class StarshipServiceTest {
     void getAllStarshipByName() {
         when(iStarshipRepository.getAllStarshipByName("Milenium Falcom")).thenReturn(Arrays.asList(starshipMain));
 
-        List<Starship> result = starshipService.getAllStarshipByName("Milenium Falcom");
+        Iterable<Starship> starshipIterable = starshipService.getAllStarshipByName("Milenium Falcom");
+
+        List<Starship> result = new ArrayList<>();
+        starshipIterable.forEach(result::add);
 
         assertNotNull(result);
         assertEquals(1, result.size());
