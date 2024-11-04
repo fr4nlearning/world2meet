@@ -33,11 +33,12 @@ class StarshipServiceTest {
 
     @BeforeEach
     public void setUp(){
-        starshipMain= Starship.builder()
+        /*starshipMain= Starship.builder()
                 .id(1)
                 .name("Milenium Falcom")
                 .faction(Faction.REBEL)
-                .build();
+                .build();*/
+        starshipMain= new Starship(1, "Milenium Falcom", Faction.REBEL);
     }
 
     @Test
@@ -47,7 +48,7 @@ class StarshipServiceTest {
         Starship savedStarship = starshipService.save(starshipMain);
 
         assertNotNull(savedStarship);
-        assertEquals(starshipMain.getId(), savedStarship.getId());
+        assertEquals(starshipMain.id(), savedStarship.id());
     }
 
     @Test
@@ -76,7 +77,7 @@ class StarshipServiceTest {
 
         assertNotNull(result);
         assertEquals(1, result.size());
-        assertEquals(starshipMain.getName(), result.get(0).getName());
+        assertEquals(starshipMain.name(), result.get(0).name());
     }
 
     @Test
@@ -86,16 +87,17 @@ class StarshipServiceTest {
         Starship result = starshipService.findById(1);
 
         assertNotNull(result);
-        assertEquals(starshipMain.getId(), result.getId());
+        assertEquals(starshipMain.id(), result.id());
     }
 
     @Test
     void update() {
-        var updatedStarship = Starship.builder()
+        /*var updatedStarship = Starship.builder()
                 .id(1)
                 .name("Dark Falcon")
                 .faction(Faction.EMPIRE)
-                .build();
+                .build();*/
+        var updatedStarship = new Starship(1, "Dark Falcon", Faction.EMPIRE);
 
         when(iStarshipRepository.findById(1)).thenReturn(starshipMain);
         when(iStarshipRepository.save(any(Starship.class))).thenReturn(updatedStarship);
@@ -103,8 +105,8 @@ class StarshipServiceTest {
         Starship result = starshipService.update(1, updatedStarship);
 
         assertNotNull(result);
-        assertEquals(starshipMain.getId(), result.getId());
-        assertEquals(updatedStarship.getFaction(), result.getFaction());
+        assertEquals(starshipMain.id(), result.id());
+        assertEquals(updatedStarship.faction(), result.faction());
     }
 
     @Test
