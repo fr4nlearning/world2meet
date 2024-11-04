@@ -9,7 +9,6 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Objects;
 
 @AllArgsConstructor
@@ -45,11 +44,10 @@ public class StarshipService {
         return Objects.isNull(ssRespository) ?
                 null :
                 this.iStarshipRepository.save(
-                        Starship.builder()
-                                .id(ssRespository.getId())
-                                .faction(starship.getFaction())
-                                .name(starship.getName())
-                                .build());
+                        new Starship(
+                                ssRespository.id(),
+                                starship.name(),
+                                starship.faction()));
     }
 
     @CacheEvict(value = "starships", allEntries = true)

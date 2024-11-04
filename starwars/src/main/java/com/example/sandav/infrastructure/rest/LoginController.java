@@ -22,12 +22,12 @@ public class LoginController implements ILoginController {
     @Override
     public ResponseEntity<JWTClient> login(UserDto userDto) {
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(userDto.getUsername(), userDto.getPassword())
+                new UsernamePasswordAuthenticationToken(userDto.username(), userDto.password())
         );
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        String token = jwtGenerator.getToken(userDto.getUsername());
+        String token = jwtGenerator.getToken(userDto.username());
         JWTClient jwtClient = new JWTClient(token);
 
         return new ResponseEntity<>(jwtClient, HttpStatus.OK);

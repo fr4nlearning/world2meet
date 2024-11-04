@@ -34,13 +34,12 @@ public class StarshipPaginationRepositoryImpl implements IStarshipRepository {
                 page.getSize()
         );
     }
-    
+
     @Override
     public Iterable<Starship> getAllStarshipByName(String name) {
 
         var listStarship = this.iStarshipPaginationRepository.findAllByNameContaining(name);
         return starshipMapper.toStarshipList(listStarship);
-
     }
 
     @Override
