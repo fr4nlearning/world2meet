@@ -12,8 +12,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RequestMapping("/api/v1/starship")
 @Tag(name = "Starship CRUD", description = "API to manage starships")
 public interface IStarshipController {

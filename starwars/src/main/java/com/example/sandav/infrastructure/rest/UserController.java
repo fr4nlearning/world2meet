@@ -16,11 +16,13 @@ public class UserController implements IUserController {
 
     @Override
     public ResponseEntity<User> save(User user) {
-        /*user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        return ResponseEntity.ok(userService.save(user));*/
-        String encode= bCryptPasswordEncoder.encode(user.password());
+
+        String encode = bCryptPasswordEncoder.encode(user.password());
         return ResponseEntity.ok(userService.save(
-                new User(user.id(), user.email(), encode, user.rol())
-        ));
+                new User(user.id(),
+                        user.email(),
+                        encode,
+                        user.rol()
+                )));
     }
 }
