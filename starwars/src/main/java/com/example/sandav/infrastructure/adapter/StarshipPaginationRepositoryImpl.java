@@ -3,7 +3,6 @@ package com.example.sandav.infrastructure.adapter;
 import com.example.sandav.domain.model.Starship;
 import com.example.sandav.domain.port.IStarshipRepository;
 import com.example.sandav.infrastructure.dto.ResponseListPageable;
-import com.example.sandav.infrastructure.exception.StarshipNotFoundException;
 import com.example.sandav.infrastructure.mapper.StarshipMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -45,12 +44,9 @@ public class StarshipPaginationRepositoryImpl implements IStarshipRepository {
 
     @Override
     public Starship findById(Integer id) {
-        /*return this.iStarshipPaginationRepository.findById(id)
-                .map(starshipEntity -> starshipMapper.toStarship(starshipEntity))
-                .orElse(null);*/
         return this.iStarshipPaginationRepository.findById(id)
-                .map(starshipMapper::toStarship)
-                .orElseThrow(() -> new StarshipNotFoundException(id));
+                .map(starshipEntity -> starshipMapper.toStarship(starshipEntity))
+                .orElse(null);
     }
 
     @Override
