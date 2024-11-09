@@ -4,7 +4,6 @@ import com.example.sandav.domain.model.Starship;
 import com.example.sandav.domain.port.IStarshipRepository;
 import com.example.sandav.infrastructure.dto.ResponseListPageable;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
@@ -12,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Objects;
 
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class StarshipService {
     private final IStarshipRepository iStarshipRepository;
 
