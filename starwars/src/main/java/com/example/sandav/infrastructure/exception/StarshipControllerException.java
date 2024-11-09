@@ -30,4 +30,8 @@ public class StarshipControllerException {
                 .build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
+
+    // poner el runtime
+
+    // poner el exception
 }
